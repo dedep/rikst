@@ -1,0 +1,51 @@
+.Country {
+    padding: 4px;
+    line-height: 1.4;
+    background-color: #fff;
+    border: 1px solid #337ab7;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 24px;
+    border-radius: 4px;
+}
+
+.Country .flag {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.Country .capital, .Country .name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+    color: #337ab7;
+}
+
+.Country .name {
+    font-size: 1.2em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+}
+
+.Country .capital {
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+.Country {
+    overflow: hidden;
+    transition-duration: 0.5s;
+    transition-property: transform;
+}
+
+.Country:hover {
+    transform: scale(1.2);
+}
