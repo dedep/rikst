@@ -7,9 +7,9 @@ class Country extends Component {
         return (
             <div className="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                 <div className="Country">
-                    <div className="name">{this.props.name}</div>
-                    <div className="capital">{this.props.capital}</div>
-                    <img className="flag" src={this.props.flag} />
+                    <div className="name">{this.props.country.name}</div>
+                    <div className="capital">{this.props.city}</div>
+                    <img className="flag" src={this.props.country.flag} alt={this.props.country.name} />
                 </div>
             </div>
         );

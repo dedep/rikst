@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import './App.css';
 import Country from './Country.js';
-import * as flags from './Flags';
+import * as countries from './Countries';
 
 class App extends Component {
-  render() {
-    return (
-        <div className="App">
-            <div className="jumbotron">
-                <div className="container">
-                    <div className="row">
-                        <Country name="Albania" capital="Tirana" flag={flags.albaniaFlag} />
-                        <Country name="Andora" capital="Andora" flag={flags.andorraFlag} />
+    render() {
+        return (
+            <div className="App">
+                <div className="jumbotron">
+                    <div className="container">
+                        <div className="row">
+                            <Country country={countries.all.Albania} city="Tirana" />
+                            <Country country={countries.all.UnitedKingdom} city="Londyn" />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    );
-  }
+        );
+    }
 }
 
 export default App;
