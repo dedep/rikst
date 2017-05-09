@@ -1,5 +1,5 @@
-import * as flags from "./Flags";
-import {Country} from "./Country";
+import * as flags from "../repository/FlagsRepository";
+import {Country} from "../model/Country";
 
 let countries = {
     "Albania": new Country("Albania", flags.albaniaFlag),

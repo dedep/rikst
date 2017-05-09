@@ -1,4 +1,4 @@
-import {City} from "./City";
+import {City} from "../model/City";
 import {countries} from './CountriesRepository';
 
 let cities = [];
