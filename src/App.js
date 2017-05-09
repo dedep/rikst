@@ -11,7 +11,9 @@ class App extends Component {
           <div className="countries-group jumbotron">
             <div className="row">
               {
-                cities.map(item => <Country key={item.name} country={item.country} city={item.name} />)
+                cities
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map(item => <Country key={item.name} country={item.country} city={item.name} />)
               }
             </div>
           </div>
