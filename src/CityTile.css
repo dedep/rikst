@@ -1,4 +1,4 @@
-.Country {
+.CityTile {
     padding: 4px;
     line-height: 1.4;
     background-color: #fff;
@@ -12,7 +12,7 @@
     border-radius: 4px;
 }
 
-.Country .flag {
+.CityTile .flag {
     display: block;
     max-width: 100%;
     height: auto;
@@ -20,32 +20,31 @@
     border: 1px solid #ddd;
 }
 
-.Country .capital, .Country .name {
+.CityTile .cityName, .CityTile .countryName {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: normal;
-    color: #337ab7;
 }
 
-.Country .name {
+.CityTile .countryName {
     font-size: 1.2em;
     border-bottom: 1px solid #ddd;
     padding-bottom: 4px;
     margin-bottom: 4px;
 }
 
-.Country .capital {
+.CityTile .cityName {
     margin-bottom: 10px;
     font-size: 12px;
 }
 
-.Country {
+.CityTile {
     overflow: hidden;
     transition-duration: 0.5s;
     transition-property: transform;
 }
 
-.Country:hover {
+.CityTile:hover {
     transform: scale(1.05);
 }

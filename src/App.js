@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Country from './Country.js';
+import CityTile from './CityTile.js';
 import {cities} from './repository/CitiesRepository';
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
               {
                 cities
                   .sort((a, b) => a.name.localeCompare(b.name))
-                  .map(item => <Country key={item.name} country={item.country} city={item.name} />)
+                  .map(item => <CityTile key={item.name} country={item.country} city={item.name} />)
               }
             </div>
           </div>
