@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Country from './Country.js';
-import {cities} from './CitiesRepository';
+import {cities} from './model/CitiesRepository';
 
 class App extends Component {
   render() {
