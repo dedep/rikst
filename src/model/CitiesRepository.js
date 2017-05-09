@@ -1,8 +1,9 @@
 import {City} from "./City";
-import * as countries from './Countries';
+import {countries} from './CountriesRepository';
 
 let cities = [];
-cities.push(new City(countries.all.Albania, "Tirana"));
-cities.push(new City(countries.all.Ukraine, "Lwów"));
+cities.push(new City(countries.Albania, "Tirana"));
+cities.push(new City(countries.Andorra, "Andora"));
+cities.push(new City(countries.Sweden, "Sztokholm"));
 
 export {cities};
