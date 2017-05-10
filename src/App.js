@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import CityTile from './CityTile.js';
+import FloatingButton from './FloatingButton.js';
 import {cities} from './repository/CitiesRepository';
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
               }
             </div>
           </div>
+          <FloatingButton/>
         </div>
       </div>
     );
