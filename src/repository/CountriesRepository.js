@@ -48,4 +48,20 @@ let countries = {
     "UnitedKingdom": new Country("Wielka Brytania", flags.ukFlag)
 };
 
-export {countries};
+function findAll() {
+    let result = [];
+
+    for (let country in countries) {
+        if (Object.prototype.hasOwnProperty.call(countries, country)) {
+            result.push({
+                code: country,
+                country: countries[country]
+            });
+        }
+    }
+
+    return result;
+}
+
+let allCountries = findAll();
+export {countries, allCountries};

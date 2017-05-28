@@ -5,11 +5,12 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "flag-icon-css": "^2.8.0",
-    "react": "^15.4.2",
+    "react": "^15.5.4",
     "react-bootstrap": "^0.30.8",
-    "react-dom": "^15.4.2",
+    "react-dom": "^15.5.4",
     "react-router": "^4.1.0",
-    "react-router-dom": "^4.1.0"
+    "react-router-dom": "^4.1.0",
+    "react-select": "^1.0.0-rc.5"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
