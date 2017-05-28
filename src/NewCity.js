@@ -1,10 +1,30 @@
 import React from 'react';
 import Select from 'react-select';
 import createClass from 'create-react-class';
+import PropTypes from 'prop-types';
 
 import 'react-select/dist/react-select.css';
+import './NewCity.css';
 
 import {allCountries} from './repository/CountriesRepository';
+
+const GravatarValue = createClass({
+  propTypes: {
+    children: PropTypes.node,
+    value: PropTypes.object
+  },
+
+  render () {
+    return (
+      <div className="Select-value">
+				<span className="Select-value-label">
+          <img className="search-flag" src={this.props.value.flag} alt="" />
+          {this.props.children}
+				</span>
+      </div>
+    );
+  }
+});
 
 var NewCity = createClass({
 
@@ -23,7 +43,8 @@ var NewCity = createClass({
   render() {
     let options = allCountries.map(c => ({
       value: c.code,
-      label: c.country.name
+      label: c.country.name,
+      flag: c.country.flag
     }));
 
     return (
@@ -37,6 +58,7 @@ var NewCity = createClass({
               clearable={false}
               options={options}
               onChange={this.updateValue}
+              valueComponent={GravatarValue}
             />
           </div>
         </div>
