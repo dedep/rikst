@@ -5,3 +5,20 @@
     margin-top: -1px;
     margin-left: -3px;
 }
+
+.city-input {
+    margin-top: 20px;
+}
+
+.NewCity {
+    margin-top: 100px;
+}
+
+.NewCity .jumbotron {
+    background-color: inherit;
+    border: 1px solid #ddd;
+}
+
+.form-group.submit {
+    margin-top: 30px;
+}
