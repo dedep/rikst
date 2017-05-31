@@ -3,10 +3,13 @@ import Select from 'react-select';
 import createClass from 'create-react-class';
 import PropTypes from 'prop-types';
 
+import {addCity} from './repository/CitiesRepository';
+import {City} from './model/City';
+
 import 'react-select/dist/react-select.css';
 import './NewCity.css';
 
-import {allCountries} from './repository/CountriesRepository';
+import {allCountries, countries} from './repository/CountriesRepository';
 
 const CountryFlag = createClass({
   propTypes: {
@@ -18,7 +21,7 @@ const CountryFlag = createClass({
     return (
       <div className="Select-value">
 				<span className="Select-value-label">
-          <img className="search-flag" src={this.props.value.flag} alt="" />
+          <img className="search-flag" src={this.props.value.flag} alt=""/>
           {this.props.children}
 				</span>
       </div>
@@ -27,6 +30,10 @@ const CountryFlag = createClass({
 });
 
 var NewCity = createClass({
+  contextTypes: {
+    router: PropTypes.object.isRequired
+  },
+
   getInitialState () {
     return {
       country: undefined
@@ -37,6 +44,12 @@ var NewCity = createClass({
     this.setState({
       country: newValue
     });
+  },
+
+  saveCity() {
+    addCity(new City(countries.Ukraine, "Kijów"));
+
+    this.context.router.history.push('/');
   },
 
   render() {
@@ -69,13 +82,14 @@ var NewCity = createClass({
             <div className="row city-input">
               <div className="col-md-12 col-lg-6">
                 <div className="form-group">
-                  <input type="text" className="form-control" placeholder="Miasto" />
+                  <input value={this.state.city} type="text" className="form-control" placeholder="Miasto"/>
                 </div>
               </div>
             </div>
 
             <div className="form-group submit">
-              <button type="button" className="col-md-3 col-sm-8 col-xs-12 btn btn-primary">ZAPISZ</button>
+              <button onClick={this.saveCity} type="button" className="col-md-3 col-sm-8 col-xs-12 btn btn-primary">ZAPISZ
+              </button>
             </div>
           </div>
         </div>

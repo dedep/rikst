@@ -7,4 +7,8 @@ cities.push(new City(countries.Andorra, "Andora"));
 cities.push(new City(countries.Sweden, "Sztokholm"));
 cities.push(new City(countries.Ukraine, "Lwów"));
 
-export {cities};
+let addCity = function(city) {
+  cities.push(city);
+};
+
+export {cities, addCity};
