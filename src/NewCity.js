@@ -9,7 +9,7 @@ import {City} from './model/City';
 import 'react-select/dist/react-select.css';
 import './NewCity.css';
 
-import {allCountries, countries} from './repository/CountriesRepository';
+import {allCountries} from './repository/CountriesRepository';
 
 const CountryFlag = createClass({
   propTypes: {
@@ -21,7 +21,7 @@ const CountryFlag = createClass({
     return (
       <div className="Select-value">
 				<span className="Select-value-label">
-          <img className="search-flag" src={this.props.value.flag} alt=""/>
+          <img className="search-flag" src={this.props.value.source.flag} alt=""/>
           {this.props.children}
 				</span>
       </div>
@@ -36,18 +36,25 @@ var NewCity = createClass({
 
   getInitialState () {
     return {
-      country: undefined
+      country: undefined,
+      city: ''
     };
   },
 
-  updateValue (newValue) {
+  updateCountry(newValue) {
     this.setState({
       country: newValue
     });
   },
 
+  updateCity(event) {
+    this.setState({
+      city: event.target.value
+    });
+  },
+
   saveCity() {
-    addCity(new City(countries.Ukraine, "Kijów"));
+    addCity(new City(this.state.country.source, this.state.city));
 
     this.context.router.history.push('/');
   },
@@ -56,7 +63,7 @@ var NewCity = createClass({
     let options = allCountries.map(c => ({
       value: c.code,
       label: c.country.name,
-      flag: c.country.flag
+      source: c.country
     }));
 
     return (
@@ -71,7 +78,7 @@ var NewCity = createClass({
                   searchable={true}
                   clearable={false}
                   options={options}
-                  onChange={this.updateValue}
+                  onChange={this.updateCountry}
                   valueComponent={CountryFlag}
                   placeholder="Wybierz państwo"
                   noResultsText="Nie znaleziono państwa"
@@ -82,7 +89,7 @@ var NewCity = createClass({
             <div className="row city-input">
               <div className="col-md-12 col-lg-6">
                 <div className="form-group">
-                  <input value={this.state.city} type="text" className="form-control" placeholder="Miasto"/>
+                  <input value={this.state.city} onChange={this.updateCity} type="text" className="form-control" placeholder="Miasto"/>
                 </div>
               </div>
             </div>
