@@ -2,6 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import createClass from 'create-react-class';
 import PropTypes from 'prop-types';
+import {sortBy} from 'lodash';
 
 import {addCity} from './repository/CitiesRepository';
 import {City} from './model/City';
@@ -61,7 +62,8 @@ var NewCity = createClass({
   },
 
   render() {
-    let options = allCountries.map(c => ({
+    let options = sortBy(allCountries, 'country.name')
+      .map(c => ({
       value: c.code,
       label: c.country.name,
       source: c.country
