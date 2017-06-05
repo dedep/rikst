@@ -53,10 +53,11 @@ var NewCity = createClass({
     });
   },
 
-  saveCity() {
+  saveCity(event) {
     addCity(new City(this.state.country.source, this.state.city));
 
     this.context.router.history.push('/');
+    event.preventDefault();
   },
 
   render() {
@@ -70,34 +71,35 @@ var NewCity = createClass({
       <div className="NewCity">
         <div className="container">
           <div className="jumbotron">
-            <div className="row">
-              <div className="col-md-12 col-lg-6">
-                <Select
-                  name="form-field-name"
-                  value={this.state.country}
-                  searchable={true}
-                  clearable={false}
-                  options={options}
-                  onChange={this.updateCountry}
-                  valueComponent={CountryFlag}
-                  placeholder="Wybierz państwo"
-                  noResultsText="Nie znaleziono państwa"
-                />
-              </div>
-            </div>
-
-            <div className="row city-input">
-              <div className="col-md-12 col-lg-6">
-                <div className="form-group">
-                  <input value={this.state.city} onChange={this.updateCity} type="text" className="form-control" placeholder="Miasto"/>
+            <form onSubmit={this.saveCity}>
+              <div className="row">
+                <div className="col-md-12 col-lg-6">
+                  <Select
+                    name="form-field-name"
+                    value={this.state.country}
+                    searchable={true}
+                    clearable={false}
+                    options={options}
+                    onChange={this.updateCountry}
+                    valueComponent={CountryFlag}
+                    placeholder="Wybierz państwo"
+                    noResultsText="Nie znaleziono państwa"
+                  />
                 </div>
               </div>
-            </div>
 
-            <div className="form-group submit">
-              <button onClick={this.saveCity} type="button" className="col-md-3 col-sm-8 col-xs-12 btn btn-primary">ZAPISZ
-              </button>
-            </div>
+              <div className="row city-input">
+                <div className="col-md-12 col-lg-6">
+                  <div className="form-group">
+                    <input value={this.state.city} onChange={this.updateCity} type="text" className="form-control" placeholder="Miasto"/>
+                  </div>
+                </div>
+              </div>
+
+              <div className="form-group submit">
+                <button type="submit" className="col-md-3 col-sm-8 col-xs-12 btn btn-primary">ZAPISZ</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
