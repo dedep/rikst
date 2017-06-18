@@ -11,7 +11,7 @@ class App extends Component {
   state = {users: []};
 
   componentDidMount() {
-    fetch('/users')
+    fetch('/cities')
       .then(res => res.json())
       .then(cts => {
         let cities = cts.map(u => {
