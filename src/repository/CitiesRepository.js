@@ -1,14 +1,37 @@
-import {City} from "../model/City";
-import {countries} from './CountriesRepository';
+import {allCountries} from './CountriesRepository';
+import {filter} from 'lodash';
 
-let cities = [];
-cities.push(new City(countries.Albania, "Tirana"));
-cities.push(new City(countries.Andorra, "Andora"));
-cities.push(new City(countries.Sweden, "Sztokholm"));
-cities.push(new City(countries.Ukraine, "Lwów"));
+import $ from 'jquery';
 
-let addCity = function(city) {
-  cities.push(city);
+let cities = new Promise((resolve, reject) => {
+  $.ajax({
+    'type': 'GET',
+    'url': '/cities',
+    'success': function (response) {
+      resolve(response);
+    },
+    'error': function (xhr, ajaxOptions, thrownError) {
+      reject(thrownError);
+    }
+  });
+});
+
+let addCity = function (city) {
+  let country = filter(allCountries, (c) => c.country === city.country)[0];
+
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      'type': 'POST',
+      'url': '/cities',
+      'data': {"country": country.code, "city": city.name},
+      'success': function () {
+        resolve();
+      },
+      'error': function () {
+        reject('Ajax req error');
+      }
+    });
+  });
 };
 
 export {cities, addCity};

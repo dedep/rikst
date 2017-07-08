@@ -4,23 +4,21 @@ import CityTile from './CityTile.js';
 import FloatingButton from './FloatingButton.js';
 
 import {countries} from './repository/CountriesRepository';
+import {cities} from './repository/CitiesRepository';
 import {City} from "./model/City";
 
 class App extends Component {
-
   state = {users: []};
 
   componentDidMount() {
-    fetch('/cities')
-      .then(res => res.json())
-      .then(cts => {
-        let cities = cts.map(u => {
-          let country = countries[u.country];
-          return new City(country, u.city);
-        });
-
-        this.setState({users: cities});
+    cities.then((cts) => {
+      let cities = cts.map(u => {
+        let country = countries[u.country];
+        return new City(country, u.city);
       });
+
+      this.setState({users: cities});
+    });
   }
 
   render() {

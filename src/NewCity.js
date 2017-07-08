@@ -55,9 +55,11 @@ var NewCity = createClass({
   },
 
   saveCity(event) {
-    addCity(new City(this.state.country.source, this.state.city));
+    addCity(new City(this.state.country.source, this.state.city))
+      .then(() => {
+        location.href = '/';
+      });
 
-    this.context.router.history.push('/');
     event.preventDefault();
   },
 
