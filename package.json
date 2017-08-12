@@ -1,26 +1,17 @@
 {
   "name": "rikst",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "flag-icon-css": "^2.8.0",
-    "jquery": "^3.2.1",
-    "react": "^15.5.4",
-    "react-bootstrap": "^0.30.8",
-    "react-dom": "^15.5.4",
-    "react-router": "^4.1.0",
-    "react-router-dom": "^4.1.0",
-    "react-select": "^1.0.0-rc.5",
-    "react-scripts": "0.9.5"
-  },
-  "devDependencies": {
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "jade": "~1.11.0",
+    "morgan": "~1.8.1",
+    "serve-favicon": "~2.4.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "proxy": "http://localhost:3001"
+    "start": "PORT=3001 node bin/www"
+  }
 }
