@@ -8,7 +8,7 @@ var cities = function() {
 
   var getAllKeys = function() {
     return new Promise((resolve) => {
-      client.keys("city_*", (err, keys) => {
+      client.keys("*", (err, keys) => {
         resolve(keys);
       });
     })

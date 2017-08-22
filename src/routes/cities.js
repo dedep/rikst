@@ -2,21 +2,16 @@
 
 var express = require('express');
 var router = express.Router();
+var redisClient = require('../redis-client');
 
-let cities = [];
-
-cities.push({"country": "Albania", "city": "Tirana"});
-cities.push({"country": "Germany", "city": "Berlin"});
-cities.push({"country": "Germany", "city": "Drezno"});
-cities.push({"country": "Russia", "city": "Kaliningrad"});
+var mapCity = function(city) {
+  return {"country": city.value, "city": city.key};
+};
 
 router.get('/', function(req, res) {
-  res.json(cities);
-});
-
-router.post('/', function(req, res) {
-  cities.push(req.body);
-  res.send({});
+  redisClient.cities()
+    .then(cities => cities.map(mapCity))
+    .then(cities => res.json(cities));
 });
 
 module.exports = router;
