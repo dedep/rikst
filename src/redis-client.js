@@ -41,6 +41,17 @@ var cities = function() {
     })
 };
 
+var addCity = function(city) {
+  var client = redis.createClient(process.env.REDIS_URL);
+
+  return new Promise((resolve) =>
+    client.set(city.city, city.country, () => {
+      resolve(true);
+    })
+  );
+};
+
 module.exports = {
-  cities: cities
+  cities: cities,
+  addCity: addCity
 };

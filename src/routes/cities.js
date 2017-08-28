@@ -14,4 +14,11 @@ router.get('/', function(req, res) {
     .then(cities => res.json(cities));
 });
 
+router.post('/', function(req, res) {
+  redisClient.addCity({
+    'city': req.body.city,
+    'country': req.body.country
+  }).then(x => res.json('ok'));
+});
+
 module.exports = router;
