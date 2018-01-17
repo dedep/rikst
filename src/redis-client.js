@@ -3,8 +3,11 @@
 var redis = require('redis');
 var Promise = require('es6-promise').Promise;
 
+let defaultRedisUrl = "redis://localhost:6379";
+let redisUrl = process.env.REDIS_URL || defaultRedisUrl;
+
 var cities = function() {
-  var client = redis.createClient(process.env.REDIS_URL);
+  var client = redis.createClient(redisUrl);
 
   var getAllKeys = function() {
     return new Promise((resolve) => {
@@ -42,7 +45,7 @@ var cities = function() {
 };
 
 var addCity = function(city) {
-  var client = redis.createClient(process.env.REDIS_URL);
+  var client = redis.createClient(redisUrl);
 
   return new Promise((resolve) =>
     client.set(city.city, city.country, () => {
