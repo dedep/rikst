@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import CityTile from './CityTile.js';
 import FloatingButton from './FloatingButton.js';
+import WorldMap from './WorldMap.js';
 
 import {countries} from './repository/CountriesRepository';
 import {cities} from './repository/CitiesRepository';
@@ -33,6 +34,9 @@ class App extends Component {
                   .map(item => <CityTile key={item.name} country={item.country} city={item.name} />)
               }
             </div>
+          </div>
+          <div className="map">
+            <WorldMap />
           </div>
           <FloatingButton/>
         </div>
