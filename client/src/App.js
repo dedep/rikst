@@ -15,7 +15,7 @@ class App extends Component {
     cities.then((cts) => {
       let cities = cts.map(u => {
         let country = countries[u.country];
-        return new City(country, u.city);
+        return new City(country, u.city, u.latitude, u.longitude);
       });
 
       this.setState({cities: cities});
@@ -27,7 +27,7 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <Magnets cities={this.state.cities} />
-          <WorldMap />
+          <WorldMap cities={this.state.cities} />
           <FloatingButton/>
         </div>
       </div>
