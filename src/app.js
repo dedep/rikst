@@ -3,7 +3,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var cities = require('./routes/cities');
+var cities = require('./routes/cities-routes');
 
 var app = express();
 
