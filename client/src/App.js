@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import CityTile from './CityTile.js';
 import FloatingButton from './FloatingButton.js';
 import WorldMap from './WorldMap.js';
+import Magnets from './Magnets.js';
 
 import {countries} from './repository/CountriesRepository';
 import {cities} from './repository/CitiesRepository';
 import {City} from "./model/City";
 
 class App extends Component {
-  state = {users: []};
+  state = {cities: []};
 
   componentDidMount() {
     cities.then((cts) => {
@@ -18,7 +18,7 @@ class App extends Component {
         return new City(country, u.city);
       });
 
-      this.setState({users: cities});
+      this.setState({cities: cities});
     });
   }
 
@@ -26,18 +26,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="container">
-          <div className="countries-group jumbotron">
-            <div className="row">
-              {
-                this.state.users
-                  .sort((a, b) => a.name.localeCompare(b.name))
-                  .map(item => <CityTile key={item.name} country={item.country} city={item.name} />)
-              }
-            </div>
-          </div>
-          <div className="map">
-            <WorldMap />
-          </div>
+          <Magnets cities={this.state.cities} />
+          <WorldMap />
           <FloatingButton/>
         </div>
       </div>
