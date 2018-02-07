@@ -24,7 +24,7 @@ var findCities = function() {
 };
 
 var persistCity = function(city) {
-  redisClient.addCity(city);
+  return redisClient.addCity(city);
 };
 
 module.exports = {
