@@ -16,6 +16,20 @@ let cities = new Promise((resolve, reject) => {
   });
 });
 
+let allCities = new Promise((resolve, reject) => {
+  console.log('Calling /all');
+  $.ajax({
+    'type': 'GET',
+    'url': '/cities/all',
+    'success': function (response) {
+      resolve(response);
+    },
+    'error': function (xhr, ajaxOptions, thrownError) {
+      reject(thrownError);
+    }
+  });
+});
+
 let addCity = function (city) {
   let country = filter(allCountries, (c) => c.country === city.country)[0];
 
@@ -34,4 +48,4 @@ let addCity = function (city) {
   });
 };
 
-export {cities, addCity};
+export {cities, addCity, allCities};

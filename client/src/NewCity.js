@@ -4,7 +4,7 @@ import createClass from 'create-react-class';
 import PropTypes from 'prop-types';
 import {sortBy} from 'lodash';
 
-import {addCity} from './repository/CitiesRepository';
+import {addCity, allCities} from './repository/CitiesRepository';
 import {City} from './model/City';
 
 import 'react-select/dist/react-select.css';
@@ -38,19 +38,22 @@ var NewCity = createClass({
   getInitialState () {
     return {
       country: undefined,
-      city: ''
+      city: '',
+      availableCities: []
     };
   },
 
   updateCountry(newValue) {
     this.setState({
-      country: newValue
+      country: newValue,
+      city: ''
     });
+    this.updateAvailableCitiesState(newValue);
   },
 
-  updateCity(event) {
+  updateCity(newValue) {
     this.setState({
-      city: event.target.value
+      city: newValue.value
     });
   },
 
@@ -63,13 +66,32 @@ var NewCity = createClass({
     event.preventDefault();
   },
 
+  updateAvailableCitiesState(country) {
+    allCities.then(cities => {
+      let available = cities
+        .filter(city => city.country === country.value)
+        .map(c => c.name);
+
+      this.setState({
+        availableCities: available
+      });
+    });
+  },
+
   render() {
-    let options = sortBy(allCountries, 'country.name')
+
+    let countryOptions = sortBy(allCountries, 'country.name')
       .map(c => ({
       value: c.code,
       label: c.country.name,
       source: c.country
     }));
+
+    let cityOptions = this.state.availableCities
+      .map(c => ({
+        value: c,
+        label: c
+      }));
 
     return (
       <div className="NewCity">
@@ -83,7 +105,7 @@ var NewCity = createClass({
                     value={this.state.country}
                     searchable={true}
                     clearable={false}
-                    options={options}
+                    options={countryOptions}
                     onChange={this.updateCountry}
                     valueComponent={CountryFlag}
                     placeholder="Wybierz państwo"
@@ -92,11 +114,18 @@ var NewCity = createClass({
                 </div>
               </div>
 
-              <div className="row city-input">
+              <div className="row">
                 <div className="col-md-12 col-lg-6">
-                  <div className="form-group">
-                    <input value={this.state.city} onChange={this.updateCity} type="text" className="form-control" placeholder="Miasto"/>
-                  </div>
+                  <Select
+                    name="form-field-city"
+                    value={this.state.city}
+                    searchable={true}
+                    clearable={false}
+                    options={cityOptions}
+                    onChange={this.updateCity}
+                    placeholder="Wybierz miasto"
+                    noResultsText="Nie znaleziono miasta"
+                  />
                 </div>
               </div>
 

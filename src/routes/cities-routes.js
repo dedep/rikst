@@ -11,6 +11,13 @@ router.get('/', function(req, res) {
     });
 });
 
+router.get('/all', function(req, res) {
+  citiesService.allCities()
+    .then(cities => {
+      return res.json(cities)
+    });
+});
+
 router.post('/', function(req, res) {
   citiesService.persistCity({
     'city': req.body.city,
