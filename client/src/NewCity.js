@@ -22,8 +22,8 @@ const CountryFlag = createClass({
     return (
       <div className="Select-value">
 				<span className="Select-value-label">
-          <img className="search-flag" src={this.props.value.source.flag} alt=""/>
           {this.props.children}
+          <img className="search-flag" src={this.props.value.source.flag} alt=""/>
 				</span>
       </div>
     );
@@ -114,7 +114,7 @@ var NewCity = createClass({
                 </div>
               </div>
 
-              <div className="row">
+              <div className="row city-row">
                 <div className="col-md-12 col-lg-6">
                   <Select
                     name="form-field-city"
@@ -130,7 +130,7 @@ var NewCity = createClass({
               </div>
 
               <div className="form-group submit">
-                <button type="submit" className="col-md-3 col-sm-8 col-xs-12 btn btn-primary">ZAPISZ</button>
+                <button disabled={!this.state.country || !this.state.city} type="submit" className="md-btn">ZAPISZ</button>
               </div>
             </form>
           </div>
