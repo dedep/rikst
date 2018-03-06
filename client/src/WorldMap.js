@@ -21,6 +21,21 @@ class WorldMap extends Component {
         }
       });
 
+    function onlyUnique(value, index, self) {
+      return self.indexOf(value) === index;
+    }
+
+    var countriesOnMap = this.props.cities
+      .map(city => city.country)
+      .filter(onlyUnique)
+      .map(country => {
+        return {
+          title: country.name,
+          id: country.code,
+          color: "#66CC99"
+        }
+      });
+
     return (
       <div className="map">
         <AmCharts.React
@@ -38,17 +53,15 @@ class WorldMap extends Component {
             imagesSettings: {
               color: "#585869",
               rollOverColor: "#585869",
-              selectedColor: "#585869",
-              pauseDuration: 0.2,
-              animationDuration:2.5,
-              adjustAnimationSpeed:true
+              selectedColor: "#585869"
             },
             dataProvider: {
               "map": "worldLow",
               "zoomLevel": 5,
               "zoomLongitude": 21,
               "zoomLatitude": 52,
-              "images": citiesOnMap
+              "images": citiesOnMap,
+              "areas": countriesOnMap
             }
           }} />
       </div>
